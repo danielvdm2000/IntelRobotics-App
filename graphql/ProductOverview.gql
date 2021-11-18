@@ -1,0 +1,11 @@
+query ProductOverview {
+  products {
+    id
+    name
+    description
+    images {
+      alternativeText
+      url
+    }
+  }
+}
