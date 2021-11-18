@@ -2,7 +2,7 @@ import { GraphQLClient } from 'graphql-request';
 import { getSdk } from '../graphql';
 
 export function getStrapiURL(path = ''): string {
-    const base = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+    const base = process.env.STRAPI_URL || 'http://localhost:1337';
     return `${base}${path}`;
 }
 
