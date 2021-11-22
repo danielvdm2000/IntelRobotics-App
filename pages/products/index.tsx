@@ -1,8 +1,8 @@
 import { GetStaticPropsResult, NextPage } from 'next'
 import Link from 'next/link';
 import { ProductOverviewQuery } from '../../graphql';
-import { sdk } from '../../lib/api'
-import { getStrapiMedia } from '../../lib/media';
+import { getStrapiMedia } from '../../lib/client/strapi';
+import { sdk } from '../../lib/server/sdk';
 
 interface Props {
     products: NonNullable<ProductOverviewQuery['products']>;

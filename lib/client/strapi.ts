@@ -1,7 +1,10 @@
-import { getStrapiURL } from "./api";
-
 interface Media {
     url: string;
+}
+
+export function getStrapiURL(path = ''): string {
+    const base = process.env.NEXT_PUBLIC_STRAPI_URL;
+    return `${base}${path}`;
 }
 
 export function getStrapiMedia(media: Media) {

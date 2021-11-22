@@ -1,7 +1,7 @@
 import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from "next";
 import { SingleProductQuery } from "../../graphql";
-import { sdk } from "../../lib/api";
-import { notNullFilter } from "../../lib/utils";
+import { sdk } from "../../lib/server/sdk";
+import { notNullFilter } from "../../lib/client/utils";
 
 interface Props {
     product: NonNullable<SingleProductQuery['product']>;
