@@ -3,6 +3,10 @@ query ProductOverview {
     id
     name
     description
+    previewImage {
+      alternativeText
+      url      
+    }
     images {
       alternativeText
       url

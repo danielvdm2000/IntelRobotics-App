@@ -81,7 +81,7 @@ export type LocaleInput = {
   updated_by?: InputMaybe<Scalars['ID']>;
 };
 
-export type Morph = I18NLocale | Product | ProductAggregator | ProductConnection | ProductConnectionCreated_At | ProductConnectionDescription | ProductConnectionId | ProductConnectionName | ProductConnectionPublished_At | ProductConnectionUpdated_At | ProductGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | CreateProductPayload | CreateRolePayload | CreateUserPayload | DeleteFilePayload | DeleteProductPayload | DeleteRolePayload | DeleteUserPayload | UpdateProductPayload | UpdateRolePayload | UpdateUserPayload;
+export type Morph = I18NLocale | Product | ProductAggregator | ProductConnection | ProductConnectionCreated_At | ProductConnectionDescription | ProductConnectionId | ProductConnectionName | ProductConnectionPreviewImage | ProductConnectionPublished_At | ProductConnectionUpdated_At | ProductGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | CreateProductPayload | CreateRolePayload | CreateUserPayload | DeleteFilePayload | DeleteProductPayload | DeleteRolePayload | DeleteUserPayload | UpdateProductPayload | UpdateRolePayload | UpdateUserPayload;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -217,10 +217,11 @@ export type MutationUploadArgs = {
 export type Product = {
   __typename?: 'Product';
   created_at: Scalars['DateTime'];
-  description?: Maybe<Scalars['String']>;
+  description: Scalars['String'];
   id: Scalars['ID'];
   images?: Maybe<Array<Maybe<UploadFile>>>;
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  previewImage?: Maybe<UploadFile>;
   published_at?: Maybe<Scalars['DateTime']>;
   updated_at: Scalars['DateTime'];
 };
@@ -270,6 +271,12 @@ export type ProductConnectionName = {
   key?: Maybe<Scalars['String']>;
 };
 
+export type ProductConnectionPreviewImage = {
+  __typename?: 'ProductConnectionPreviewImage';
+  connection?: Maybe<ProductConnection>;
+  key?: Maybe<Scalars['ID']>;
+};
+
 export type ProductConnectionPublished_At = {
   __typename?: 'ProductConnectionPublished_at';
   connection?: Maybe<ProductConnection>;
@@ -288,15 +295,17 @@ export type ProductGroupBy = {
   description?: Maybe<Array<Maybe<ProductConnectionDescription>>>;
   id?: Maybe<Array<Maybe<ProductConnectionId>>>;
   name?: Maybe<Array<Maybe<ProductConnectionName>>>;
+  previewImage?: Maybe<Array<Maybe<ProductConnectionPreviewImage>>>;
   published_at?: Maybe<Array<Maybe<ProductConnectionPublished_At>>>;
   updated_at?: Maybe<Array<Maybe<ProductConnectionUpdated_At>>>;
 };
 
 export type ProductInput = {
   created_by?: InputMaybe<Scalars['ID']>;
-  description?: InputMaybe<Scalars['String']>;
+  description: Scalars['String'];
   images?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  name?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  previewImage?: InputMaybe<Scalars['ID']>;
   published_at?: InputMaybe<Scalars['DateTime']>;
   updated_by?: InputMaybe<Scalars['ID']>;
 };
@@ -942,6 +951,7 @@ export type EditProductInput = {
   description?: InputMaybe<Scalars['String']>;
   images?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   name?: InputMaybe<Scalars['String']>;
+  previewImage?: InputMaybe<Scalars['ID']>;
   published_at?: InputMaybe<Scalars['DateTime']>;
   updated_by?: InputMaybe<Scalars['ID']>;
 };
@@ -1008,14 +1018,14 @@ export type ProductIdsQuery = { __typename?: 'Query', products?: Array<{ __typen
 export type ProductOverviewQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductOverviewQuery = { __typename?: 'Query', products?: Array<{ __typename?: 'Product', id: string, name?: string | null | undefined, description?: string | null | undefined, images?: Array<{ __typename?: 'UploadFile', alternativeText?: string | null | undefined, url: string } | null | undefined> | null | undefined } | null | undefined> | null | undefined };
+export type ProductOverviewQuery = { __typename?: 'Query', products?: Array<{ __typename?: 'Product', id: string, name: string, description: string, previewImage?: { __typename?: 'UploadFile', alternativeText?: string | null | undefined, url: string } | null | undefined, images?: Array<{ __typename?: 'UploadFile', alternativeText?: string | null | undefined, url: string } | null | undefined> | null | undefined } | null | undefined> | null | undefined };
 
 export type SingleProductQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type SingleProductQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name?: string | null | undefined, description?: string | null | undefined, images?: Array<{ __typename?: 'UploadFile', alternativeText?: string | null | undefined, url: string } | null | undefined> | null | undefined } | null | undefined };
+export type SingleProductQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, description: string, previewImage?: { __typename?: 'UploadFile', alternativeText?: string | null | undefined, url: string } | null | undefined, images?: Array<{ __typename?: 'UploadFile', alternativeText?: string | null | undefined, url: string } | null | undefined> | null | undefined } | null | undefined };
 
 
 export const ProductIdsDocument = gql`
@@ -1031,6 +1041,10 @@ export const ProductOverviewDocument = gql`
     id
     name
     description
+    previewImage {
+      alternativeText
+      url
+    }
     images {
       alternativeText
       url
@@ -1044,6 +1058,10 @@ export const SingleProductDocument = gql`
     id
     name
     description
+    previewImage {
+      alternativeText
+      url
+    }
     images {
       alternativeText
       url

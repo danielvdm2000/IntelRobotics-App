@@ -2,6 +2,7 @@ import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, Next
 import { SingleProductQuery } from "../../graphql";
 import { sdk } from "../../lib/server/sdk";
 import { notNullFilter } from "../../lib/client/utils";
+import ProductPage from "../../components/pages/ProductPage";
 
 interface Props {
     product: NonNullable<SingleProductQuery['product']>;
@@ -12,10 +13,10 @@ type Paths = {
 }
 
 const SingleProduct: NextPage<Props> = ({ product }) => (
-    <>
-        <h1>{product.name}</h1>
-        <article>{product.description}</article>
-    </>
+    <ProductPage 
+        name={product.name}
+        description={product.description}
+    />
 );
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult<Paths>> {
