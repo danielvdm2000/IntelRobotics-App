@@ -1,4 +1,5 @@
 import React from 'react';
+import ContentContainer from '../ContentContainer';
 
 export interface TextPageProps {
     title: string;
@@ -6,10 +7,12 @@ export interface TextPageProps {
 }
 
 const TextPage: React.FC<TextPageProps> = ({ title, content }) => (
-    <article>
-        <h1>{title}</h1>
-        {content}
-    </article>
+    <ContentContainer>
+        <article>
+            <h1>{title}</h1>
+            {content}
+        </article>
+    </ContentContainer>
 );
 
 export default TextPage;

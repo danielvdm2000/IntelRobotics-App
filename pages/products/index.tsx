@@ -38,13 +38,7 @@ const ProductsOverview: NextPage<Props> = ({ products }) => {
         });
     }, [products]);
 
-    return (
-        <ContentContainer>
-            <ProductOverviewPage
-                products={transformedProducts}
-            />
-        </ContentContainer>
-    );
+    return <ProductOverviewPage products={transformedProducts} />
 }
 
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {

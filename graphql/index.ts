@@ -27,6 +27,24 @@ export type Scalars = {
   Upload: any;
 };
 
+export type AboutPage = {
+  __typename?: 'AboutPage';
+  content: Scalars['String'];
+  created_at: Scalars['DateTime'];
+  id: Scalars['ID'];
+  published_at?: Maybe<Scalars['DateTime']>;
+  title: Scalars['String'];
+  updated_at: Scalars['DateTime'];
+};
+
+export type AboutPageInput = {
+  content: Scalars['String'];
+  created_by?: InputMaybe<Scalars['ID']>;
+  published_at?: InputMaybe<Scalars['DateTime']>;
+  title: Scalars['String'];
+  updated_by?: InputMaybe<Scalars['ID']>;
+};
+
 export type AdminUser = {
   __typename?: 'AdminUser';
   firstname: Scalars['String'];
@@ -81,7 +99,7 @@ export type LocaleInput = {
   updated_by?: InputMaybe<Scalars['ID']>;
 };
 
-export type Morph = I18NLocale | Product | ProductAggregator | ProductConnection | ProductConnectionCreated_At | ProductConnectionDescription | ProductConnectionId | ProductConnectionName | ProductConnectionPreviewImage | ProductConnectionPublished_At | ProductConnectionUpdated_At | ProductGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | CreateProductPayload | CreateRolePayload | CreateUserPayload | DeleteFilePayload | DeleteProductPayload | DeleteRolePayload | DeleteUserPayload | UpdateProductPayload | UpdateRolePayload | UpdateUserPayload;
+export type Morph = AboutPage | I18NLocale | Product | ProductAggregator | ProductConnection | ProductConnectionCreated_At | ProductConnectionDescription | ProductConnectionId | ProductConnectionName | ProductConnectionPreviewImage | ProductConnectionPublished_At | ProductConnectionUpdated_At | ProductGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | CreateProductPayload | CreateRolePayload | CreateUserPayload | DeleteAboutPagePayload | DeleteFilePayload | DeleteProductPayload | DeleteRolePayload | DeleteUserPayload | UpdateAboutPagePayload | UpdateProductPayload | UpdateRolePayload | UpdateUserPayload;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -90,6 +108,7 @@ export type Mutation = {
   createRole?: Maybe<CreateRolePayload>;
   /** Create a new user */
   createUser?: Maybe<CreateUserPayload>;
+  deleteAboutPage?: Maybe<DeleteAboutPagePayload>;
   /** Delete one file */
   deleteFile?: Maybe<DeleteFilePayload>;
   deleteProduct?: Maybe<DeleteProductPayload>;
@@ -103,6 +122,7 @@ export type Mutation = {
   multipleUpload: Array<Maybe<UploadFile>>;
   register: UsersPermissionsLoginPayload;
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateAboutPage?: Maybe<UpdateAboutPagePayload>;
   updateFileInfo: UploadFile;
   updateProduct?: Maybe<UpdateProductPayload>;
   /** Update an existing role */
@@ -181,6 +201,11 @@ export type MutationResetPasswordArgs = {
   code: Scalars['String'];
   password: Scalars['String'];
   passwordConfirmation: Scalars['String'];
+};
+
+
+export type MutationUpdateAboutPageArgs = {
+  input?: InputMaybe<UpdateAboutPageInput>;
 };
 
 
@@ -317,6 +342,7 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  aboutPage?: Maybe<AboutPage>;
   files?: Maybe<Array<Maybe<UploadFile>>>;
   filesConnection?: Maybe<UploadFileConnection>;
   me?: Maybe<UsersPermissionsMe>;
@@ -330,6 +356,11 @@ export type Query = {
   user?: Maybe<UsersPermissionsUser>;
   users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
   usersConnection?: Maybe<UsersPermissionsUserConnection>;
+};
+
+
+export type QueryAboutPageArgs = {
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 
@@ -883,6 +914,11 @@ export type CreateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
+export type DeleteAboutPagePayload = {
+  __typename?: 'deleteAboutPagePayload';
+  aboutPage?: Maybe<AboutPage>;
+};
+
 export type DeleteFileInput = {
   where?: InputMaybe<InputId>;
 };
@@ -917,6 +953,14 @@ export type DeleteUserInput = {
 export type DeleteUserPayload = {
   __typename?: 'deleteUserPayload';
   user?: Maybe<UsersPermissionsUser>;
+};
+
+export type EditAboutPageInput = {
+  content?: InputMaybe<Scalars['String']>;
+  created_by?: InputMaybe<Scalars['ID']>;
+  published_at?: InputMaybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
+  updated_by?: InputMaybe<Scalars['ID']>;
 };
 
 export type EditFileInput = {
@@ -980,6 +1024,15 @@ export type EditUserInput = {
   username?: InputMaybe<Scalars['String']>;
 };
 
+export type UpdateAboutPageInput = {
+  data?: InputMaybe<EditAboutPageInput>;
+};
+
+export type UpdateAboutPagePayload = {
+  __typename?: 'updateAboutPagePayload';
+  aboutPage?: Maybe<AboutPage>;
+};
+
 export type UpdateProductInput = {
   data?: InputMaybe<EditProductInput>;
   where?: InputMaybe<InputId>;
@@ -1010,6 +1063,11 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
+export type AboutPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AboutPageQuery = { __typename?: 'Query', aboutPage?: { __typename?: 'AboutPage', title: string, content: string } | null | undefined };
+
 export type ProductIdsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1028,6 +1086,14 @@ export type SingleProductQueryVariables = Exact<{
 export type SingleProductQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, description: string, previewImage?: { __typename?: 'UploadFile', alternativeText?: string | null | undefined, url: string } | null | undefined, images?: Array<{ __typename?: 'UploadFile', alternativeText?: string | null | undefined, url: string } | null | undefined> | null | undefined } | null | undefined };
 
 
+export const AboutPageDocument = gql`
+    query AboutPage {
+  aboutPage {
+    title
+    content
+  }
+}
+    `;
 export const ProductIdsDocument = gql`
     query ProductIds {
   products {
@@ -1073,6 +1139,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    AboutPage(variables?: AboutPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AboutPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<AboutPageQuery>(AboutPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AboutPage');
+    },
     ProductIds(variables?: ProductIdsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ProductIdsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ProductIdsQuery>(ProductIdsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ProductIds');
     },

@@ -1,5 +1,3 @@
-import { SingleProductQuery } from "../../graphql";
-
 export function getStrapiURL(path = ''): string {
     const base = process.env.NEXT_PUBLIC_STRAPI_URL;
     return `${base}${path}`;
@@ -7,7 +5,7 @@ export function getStrapiURL(path = ''): string {
 
 export function getStrapiMedia(url: string) {
     return url.startsWith('/')
-        ? `${process.env.FILE_SPACE_URL}${url}` 
+        ? `${process.env.NEXT_PUBLIC_FILE_SPACE_URL}${url}` 
         : url;
 }
 

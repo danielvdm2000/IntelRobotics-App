@@ -14,8 +14,16 @@ const ProductSlider: React.FC<Props> = ({ images }) => (
     >
         <Slider>
             {images.map((img, idx) => (
-                <Slide index={idx}>
-                    <img src={img.src} alt={img.alt} />
+                <Slide index={idx} key={img.src}>
+                    <img
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'contain'
+                        }}
+                        src={img.src}
+                        alt={img.alt}
+                    />
                 </Slide>
             ))}
         </Slider>

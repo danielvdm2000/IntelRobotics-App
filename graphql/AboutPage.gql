@@ -1,0 +1,6 @@
+query AboutPage {
+  aboutPage {
+    title 
+    content
+  }
+}
