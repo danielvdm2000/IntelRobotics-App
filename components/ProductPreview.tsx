@@ -13,6 +13,7 @@ const ProductPreview: React.FC<Props> = ({ image, name }) => (
         border: '1px solid rgb(170, 170, 170)',
         backgroundColor: '#ebebeb',
         padding: '10px',
+        cursor: 'pointer',
     }}>
         <img 
             src={image?.src} 

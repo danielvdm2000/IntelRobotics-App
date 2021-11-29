@@ -6,7 +6,6 @@ interface Props {
 
 const Header: React.FC<Props> = ({ children, name }) => (
     <header style={{
-        paddingBottom: 20,
         display: 'flex',
         width: 4 * 80,
         justifyContent: 'space-between'

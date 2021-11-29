@@ -1,18 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 import ProductPreview from '../ProductPreview';
-
-interface Image {
-    src: string;
-    alt: string | undefined;
-}
+import { Image } from '../types';
 
 export interface Product {
     id: string;
     name: string;
     description: string;
     previewImage: Image | undefined;
-    images: Image[];
 }
 
 interface ProductOverviewPageProps {
@@ -26,12 +21,13 @@ const ProductOverviewPage: React.FC<ProductOverviewPageProps> = ({ products }) =
         gap: 20,
     }}>
         {products.map(product => (
-            <Link href={`/products/${product.id}`}>
-                <ProductPreview
-                    key={product.id}
-                    name={product.name}
-                    image={product.previewImage}
-                />
+            <Link key={product.id} href={`/products/${product.id}`}>
+                <div>
+                    <ProductPreview
+                        name={product.name}
+                        image={product.previewImage}
+                    />
+                </div>
             </Link>
         ))}
     </div>

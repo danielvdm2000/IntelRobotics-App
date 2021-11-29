@@ -7,9 +7,5 @@ query ProductOverview {
       alternativeText
       url      
     }
-    images {
-      alternativeText
-      url
-    }
   }
 }

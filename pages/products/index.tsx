@@ -5,6 +5,7 @@ import { ProductOverviewQuery } from '../../graphql';
 import { getStrapiMedia } from '../../lib/client/strapi';
 import { sdk } from '../../lib/server/sdk';
 import { notNullFilter } from '../../lib/client/utils';
+import ContentContainer from '../../components/ContentContainer';
 
 type RawProducts = NonNullable<ProductOverviewQuery['products']>;
 
@@ -12,12 +13,11 @@ interface Props {
     products: RawProducts;
 }
 
-type Images = NonNullable<Props['products'][number]>['images'];
-type Image = NonNullable<NonNullable<Images>[number]>;
+type Image = NonNullable<NonNullable<Props['products'][number]>['previewImage']>;
 
 function prepareImage(img: Image) {
     return {
-        src: getStrapiMedia(img),
+        src: getStrapiMedia(img.url),
         alt: img.alternativeText ?? undefined,
     }
 }
@@ -25,28 +25,26 @@ function prepareImage(img: Image) {
 const ProductsOverview: NextPage<Props> = ({ products }) => {
     const transformedProducts: Product[] = React.useMemo(() => {
         return products.filter(notNullFilter).map(raw => {
-            const rawPreviewImage = raw.images ? raw.images[0] : undefined;
-            const previewImage = rawPreviewImage ? prepareImage(rawPreviewImage) : undefined;
-
-            const images = raw.images?.filter(notNullFilter).map(prepareImage);            
+            const previewImage = raw.previewImage ? prepareImage(raw.previewImage) : undefined;
 
             const product: Product = {
                 id: raw.id,
                 name: raw.name,
                 description: raw.description,
                 previewImage: previewImage,
-                images: images ?? [],
-            } 
+            }
 
             return product;
         });
     }, [products]);
 
     return (
-        <ProductOverviewPage
-            products={transformedProducts}
-        />
-    )
+        <ContentContainer>
+            <ProductOverviewPage
+                products={transformedProducts}
+            />
+        </ContentContainer>
+    );
 }
 
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {

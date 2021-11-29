@@ -1018,7 +1018,7 @@ export type ProductIdsQuery = { __typename?: 'Query', products?: Array<{ __typen
 export type ProductOverviewQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductOverviewQuery = { __typename?: 'Query', products?: Array<{ __typename?: 'Product', id: string, name: string, description: string, previewImage?: { __typename?: 'UploadFile', alternativeText?: string | null | undefined, url: string } | null | undefined, images?: Array<{ __typename?: 'UploadFile', alternativeText?: string | null | undefined, url: string } | null | undefined> | null | undefined } | null | undefined> | null | undefined };
+export type ProductOverviewQuery = { __typename?: 'Query', products?: Array<{ __typename?: 'Product', id: string, name: string, description: string, previewImage?: { __typename?: 'UploadFile', alternativeText?: string | null | undefined, url: string } | null | undefined } | null | undefined> | null | undefined };
 
 export type SingleProductQueryVariables = Exact<{
   id: Scalars['ID'];
@@ -1042,10 +1042,6 @@ export const ProductOverviewDocument = gql`
     name
     description
     previewImage {
-      alternativeText
-      url
-    }
-    images {
       alternativeText
       url
     }
