@@ -14,3 +14,28 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* Product overview page */
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+@media only screen and (max-width: 1080px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

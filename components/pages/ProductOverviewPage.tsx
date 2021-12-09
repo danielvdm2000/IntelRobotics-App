@@ -3,7 +3,6 @@ import Link from 'next/link';
 import ProductPreview from '../ProductPreview';
 import { Image } from '../types';
 import ContentContainer from '../ContentContainer';
-import styles from '../../styles/ProductOverview.module.css';
 
 export interface Product {
     id: string;
@@ -18,7 +17,7 @@ interface ProductOverviewPageProps {
 
 const ProductOverviewPage: React.FC<ProductOverviewPageProps> = ({ products }) => (
     <ContentContainer>
-        <div className={styles.productGrid}>
+        <div className="product-grid">
             {products.map(product => (
                 <Link key={product.id} href={`/products/${product.id}`}>
                     <div>
