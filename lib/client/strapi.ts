@@ -4,19 +4,7 @@ export function getStrapiURL(path = ''): string {
 }
 
 export function getStrapiMedia(url: string) {
-    return url.startsWith('/')
-        ? `${process.env.NEXT_PUBLIC_FILE_SPACE_URL}${url}` 
-        : url;
-}
-
-type StrapiImage = {
-    url: string;
-    alternativeText?: string | undefined | null;
-}
-
-export function prepareImage(img: StrapiImage) {
-    return {
-        src: getStrapiMedia(img.url),
-        alt: img.alternativeText ?? undefined,
-    }
+    const [superDomain, subDomain, fileName] = url.split('/');
+    const result = `https://${subDomain}.${superDomain}/${fileName}`;
+    return result;
 }

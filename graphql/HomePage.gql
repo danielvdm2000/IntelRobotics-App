@@ -1,0 +1,9 @@
+query HomePage {
+  homePage {
+    title
+    slogan
+    video {
+      url
+    }
+  }
+}

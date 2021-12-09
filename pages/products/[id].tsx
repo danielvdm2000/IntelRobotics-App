@@ -4,7 +4,6 @@ import { sdk } from "../../lib/server/sdk";
 import { notNullFilter } from "../../lib/client/utils";
 import ProductPage from "../../components/pages/ProductPage";
 import ContentContainer from "../../components/ContentContainer";
-import { prepareImage } from "../../lib/client/strapi";
 
 interface Props {
     product: NonNullable<SingleProductQuery['product']>;
@@ -19,7 +18,7 @@ const SingleProduct: NextPage<Props> = ({ product }) => (
         <ProductPage
             name={product.name}
             description={product.description}
-            images={product.images?.filter(notNullFilter).map(img => prepareImage(img)) ?? []}
+            images={product.images?.filter(notNullFilter).map(img => ({ src: img.url ?? '', alt: img.alternativeText ?? '' })) ?? []}
         />
     </ContentContainer>
 );

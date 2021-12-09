@@ -79,6 +79,26 @@ export type FileInput = {
   width?: InputMaybe<Scalars['Int']>;
 };
 
+export type HomePage = {
+  __typename?: 'HomePage';
+  created_at: Scalars['DateTime'];
+  id: Scalars['ID'];
+  published_at?: Maybe<Scalars['DateTime']>;
+  slogan: Scalars['String'];
+  title: Scalars['String'];
+  updated_at: Scalars['DateTime'];
+  video?: Maybe<UploadFile>;
+};
+
+export type HomePageInput = {
+  created_by?: InputMaybe<Scalars['ID']>;
+  published_at?: InputMaybe<Scalars['DateTime']>;
+  slogan: Scalars['String'];
+  title: Scalars['String'];
+  updated_by?: InputMaybe<Scalars['ID']>;
+  video?: InputMaybe<Scalars['ID']>;
+};
+
 export type I18NLocale = {
   __typename?: 'I18NLocale';
   code?: Maybe<Scalars['String']>;
@@ -99,7 +119,7 @@ export type LocaleInput = {
   updated_by?: InputMaybe<Scalars['ID']>;
 };
 
-export type Morph = AboutPage | I18NLocale | Product | ProductAggregator | ProductConnection | ProductConnectionCreated_At | ProductConnectionDescription | ProductConnectionId | ProductConnectionName | ProductConnectionPreviewImage | ProductConnectionPublished_At | ProductConnectionUpdated_At | ProductGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | CreateProductPayload | CreateRolePayload | CreateUserPayload | DeleteAboutPagePayload | DeleteFilePayload | DeleteProductPayload | DeleteRolePayload | DeleteUserPayload | UpdateAboutPagePayload | UpdateProductPayload | UpdateRolePayload | UpdateUserPayload;
+export type Morph = AboutPage | HomePage | I18NLocale | Product | ProductAggregator | ProductConnection | ProductConnectionCreated_At | ProductConnectionDescription | ProductConnectionId | ProductConnectionName | ProductConnectionPreviewImage | ProductConnectionPublished_At | ProductConnectionUpdated_At | ProductGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | CreateProductPayload | CreateRolePayload | CreateUserPayload | DeleteAboutPagePayload | DeleteFilePayload | DeleteHomePagePayload | DeleteProductPayload | DeleteRolePayload | DeleteUserPayload | UpdateAboutPagePayload | UpdateHomePagePayload | UpdateProductPayload | UpdateRolePayload | UpdateUserPayload;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -111,6 +131,7 @@ export type Mutation = {
   deleteAboutPage?: Maybe<DeleteAboutPagePayload>;
   /** Delete one file */
   deleteFile?: Maybe<DeleteFilePayload>;
+  deleteHomePage?: Maybe<DeleteHomePagePayload>;
   deleteProduct?: Maybe<DeleteProductPayload>;
   /** Delete an existing role */
   deleteRole?: Maybe<DeleteRolePayload>;
@@ -124,6 +145,7 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateAboutPage?: Maybe<UpdateAboutPagePayload>;
   updateFileInfo: UploadFile;
+  updateHomePage?: Maybe<UpdateHomePagePayload>;
   updateProduct?: Maybe<UpdateProductPayload>;
   /** Update an existing role */
   updateRole?: Maybe<UpdateRolePayload>;
@@ -212,6 +234,11 @@ export type MutationUpdateAboutPageArgs = {
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info: FileInfoInput;
+};
+
+
+export type MutationUpdateHomePageArgs = {
+  input?: InputMaybe<UpdateHomePageInput>;
 };
 
 
@@ -345,6 +372,7 @@ export type Query = {
   aboutPage?: Maybe<AboutPage>;
   files?: Maybe<Array<Maybe<UploadFile>>>;
   filesConnection?: Maybe<UploadFileConnection>;
+  homePage?: Maybe<HomePage>;
   me?: Maybe<UsersPermissionsMe>;
   product?: Maybe<Product>;
   products?: Maybe<Array<Maybe<Product>>>;
@@ -378,6 +406,11 @@ export type QueryFilesConnectionArgs = {
   sort?: InputMaybe<Scalars['String']>;
   start?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Scalars['JSON']>;
+};
+
+
+export type QueryHomePageArgs = {
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 
@@ -928,6 +961,11 @@ export type DeleteFilePayload = {
   file?: Maybe<UploadFile>;
 };
 
+export type DeleteHomePagePayload = {
+  __typename?: 'deleteHomePagePayload';
+  homePage?: Maybe<HomePage>;
+};
+
 export type DeleteProductInput = {
   where?: InputMaybe<InputId>;
 };
@@ -983,6 +1021,15 @@ export type EditFileInput = {
   width?: InputMaybe<Scalars['Int']>;
 };
 
+export type EditHomePageInput = {
+  created_by?: InputMaybe<Scalars['ID']>;
+  published_at?: InputMaybe<Scalars['DateTime']>;
+  slogan?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  updated_by?: InputMaybe<Scalars['ID']>;
+  video?: InputMaybe<Scalars['ID']>;
+};
+
 export type EditLocaleInput = {
   code?: InputMaybe<Scalars['String']>;
   created_by?: InputMaybe<Scalars['ID']>;
@@ -1033,6 +1080,15 @@ export type UpdateAboutPagePayload = {
   aboutPage?: Maybe<AboutPage>;
 };
 
+export type UpdateHomePageInput = {
+  data?: InputMaybe<EditHomePageInput>;
+};
+
+export type UpdateHomePagePayload = {
+  __typename?: 'updateHomePagePayload';
+  homePage?: Maybe<HomePage>;
+};
+
 export type UpdateProductInput = {
   data?: InputMaybe<EditProductInput>;
   where?: InputMaybe<InputId>;
@@ -1068,6 +1124,11 @@ export type AboutPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AboutPageQuery = { __typename?: 'Query', aboutPage?: { __typename?: 'AboutPage', title: string, content: string } | null | undefined };
 
+export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type HomePageQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePage', title: string, slogan: string, video?: { __typename?: 'UploadFile', url: string } | null | undefined } | null | undefined };
+
 export type ProductIdsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1091,6 +1152,17 @@ export const AboutPageDocument = gql`
   aboutPage {
     title
     content
+  }
+}
+    `;
+export const HomePageDocument = gql`
+    query HomePage {
+  homePage {
+    title
+    slogan
+    video {
+      url
+    }
   }
 }
     `;
@@ -1141,6 +1213,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     AboutPage(variables?: AboutPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AboutPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<AboutPageQuery>(AboutPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AboutPage');
+    },
+    HomePage(variables?: HomePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HomePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<HomePageQuery>(HomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'HomePage');
     },
     ProductIds(variables?: ProductIdsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ProductIdsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ProductIdsQuery>(ProductIdsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ProductIds');

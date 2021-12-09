@@ -1,46 +1,46 @@
-import type { NextPage } from 'next'
-import Link from 'next/link';
-import ContentContainer from '../components/ContentContainer';
+import type { GetStaticPropsResult, NextPage } from 'next'
+import HomePage from '../components/pages/HomePage';
 import { getStrapiMedia } from '../lib/client/strapi';
+import { sdk } from '../lib/server/sdk';
 
-const Home: NextPage = () => {
-  return (
-    <div style={{
-      width: '100%',
-      height: 'calc(100vh - 70px)',
-      position: 'relative',
-    }}>
-      <video
-        src={getStrapiMedia('/6451475e020dc70f3d11a31447f4d038.mp4')}
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-        }}
-        autoPlay
-        muted
-        loop
-      />
-      <div style={{
-        position: 'absolute',
-        left: 0,
-        top: '50%',
-        width: '100%',
-        transform: 'translateY(-50%)',
-      }}>
-        <ContentContainer style={{ color: '#fff' }}>
-          <h1>IntelRobotics</h1>
-          <h2>More than just robots</h2>
-          <span style={{ textDecoration: 'underline' }}>
-            <Link href="/products">View Products</Link>
-          </span>
-        </ContentContainer>
-      </div>
-    </div>
-  )
+interface Props {
+  title: string;
+  slogan: string;
+  video: {
+    url: string;
+  }
+}
+
+const Home: NextPage<Props> = props => (
+  <HomePage 
+    title={props.title}
+    slogan={props.slogan}
+    backgroundVideo={props.video.url}
+  />
+);
+
+export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
+  const result = await sdk.HomePage();
+
+  if (result.homePage == null) {
+    throw new Error("Can't find the content for the home page");
+  }
+
+  if (result.homePage.video?.url == null) {
+    throw new Error("Can't find the video for the home page");
+  }
+
+  console.log(result.homePage);
+
+  return {
+    props: {
+      title: result.homePage.title,
+      slogan: result.homePage.slogan,
+      video: {
+        url: getStrapiMedia(result.homePage.video.url),
+      }
+    }
+  }
 }
 
 export default Home

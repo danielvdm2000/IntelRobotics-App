@@ -20,7 +20,7 @@ const ProductPreview: React.FC<Props> = ({ image, name }) => (
             alt={image?.alt ?? 'No alternative text'} 
             style={{
                 display: 'block',
-                width: '200px',
+                width: '100%',
                 height: '200px',
                 objectFit: 'contain',
                 paddingBottom: '10px',
