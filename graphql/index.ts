@@ -1493,6 +1493,11 @@ export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type HomePageQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePage', title: string, slogan: string, video?: { __typename?: 'UploadFile', url: string } | null | undefined } | null | undefined };
 
+export type OfficeIdsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type OfficeIdsQuery = { __typename?: 'Query', offices?: Array<{ __typename?: 'Office', id: string } | null | undefined> | null | undefined };
+
 export type OfficeOverviewQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1539,6 +1544,13 @@ export const HomePageDocument = gql`
     video {
       url
     }
+  }
+}
+    `;
+export const OfficeIdsDocument = gql`
+    query OfficeIds {
+  offices {
+    id
   }
 }
     `;
@@ -1623,6 +1635,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     HomePage(variables?: HomePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<HomePageQuery>(HomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'HomePage');
+    },
+    OfficeIds(variables?: OfficeIdsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<OfficeIdsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<OfficeIdsQuery>(OfficeIdsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'OfficeIds');
     },
     OfficeOverview(variables?: OfficeOverviewQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<OfficeOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<OfficeOverviewQuery>(OfficeOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'OfficeOverview');

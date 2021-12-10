@@ -7,7 +7,7 @@ interface Props {
 const Header: React.FC<Props> = ({ children, name }) => (
     <header style={{
         display: 'flex',
-        width: 4 * 80,
+        width: 5 * 80,
         justifyContent: 'space-between'
     }}>
         <span style={{ fontWeight: 500 }}>

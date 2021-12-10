@@ -1,0 +1,5 @@
+query OfficeIds {
+    offices {
+        id
+    }
+}

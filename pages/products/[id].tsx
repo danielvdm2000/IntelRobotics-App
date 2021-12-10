@@ -39,7 +39,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult<Paths>> {
     });
 
     return {
-        paths: paths,
+        paths,
         fallback: false,
     }
 }
