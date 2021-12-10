@@ -1,0 +1,17 @@
+query OfficePage($id: ID!) {
+  office(id: $id) {
+    city
+    country
+    continent
+    phoneNumber
+    email
+  }
+  employees(where: { office: { id: $id } }) {
+    id
+    name
+    image {
+      url
+    }
+    title
+  }
+}

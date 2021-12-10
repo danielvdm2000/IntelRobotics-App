@@ -1,0 +1,10 @@
+query OfficeOverview {
+  offices {
+    id
+    city
+    country
+    continent
+    phoneNumber
+    email
+  }
+}

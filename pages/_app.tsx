@@ -18,6 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/products">Products</Link>
+          <Link href="/offices">Offices</Link>
         </Header>
       </ContentContainer>
       <Component {...pageProps} />

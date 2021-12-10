@@ -30,12 +30,9 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
     throw new Error("Can't find the video for the home page");
   }
 
-  console.log(result.homePage);
-
   return {
     props: {
-      title: result.homePage.title,
-      slogan: result.homePage.slogan,
+      ...result.homePage,
       video: {
         url: getStrapiMedia(result.homePage.video.url),
       }

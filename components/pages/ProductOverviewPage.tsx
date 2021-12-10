@@ -11,11 +11,11 @@ export interface Product {
     previewImage: Image | undefined;
 }
 
-interface ProductOverviewPageProps {
+interface Props {
     products: Product[];
 }
 
-const ProductOverviewPage: React.FC<ProductOverviewPageProps> = ({ products }) => (
+const ProductOverviewPage: React.FC<Props> = ({ products }) => (
     <ContentContainer>
         <div className="product-grid">
             {products.map(product => (
