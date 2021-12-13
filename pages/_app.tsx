@@ -1,8 +1,8 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import Link from 'next/link';
 import Header from '../components/Header';
 import ContentContainer from '../components/ContentContainer';
+import NavLink from '../components/NavLink';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,10 +15,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         alignItems: 'center',
       }}>
         <Header name="IntelRoboics">
-          <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
-          <Link href="/products">Products</Link>
-          <Link href="/offices">Offices</Link>
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/about">About</NavLink>
+          <NavLink href="/products">Products</NavLink>
+          <NavLink href="/offices">Offices</NavLink>
         </Header>
       </ContentContainer>
       <Component {...pageProps} />

@@ -7,8 +7,8 @@ body {
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: #0439f8;
+  text-decoration: underline;
 }
 
 * {
@@ -36,6 +36,13 @@ a {
 
 @media only screen and (max-width: 560px) {
   .product-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
+}
+
+/* Office overview page */
+.office-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
 }

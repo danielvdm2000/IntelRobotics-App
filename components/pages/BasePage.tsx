@@ -1,18 +1,17 @@
 import React from 'react';
 import ContentContainer from '../ContentContainer';
 
-export interface TextPageProps {
+interface Props {
     title: string;
-    content: string;
 }
 
-const TextPage: React.FC<TextPageProps> = ({ title, content }) => (
+const BasePage: React.FC<Props> = ({ title, children }) => (
     <ContentContainer>
         <article>
             <h1>{title}</h1>
-            {content}
+            {children}
         </article>
     </ContentContainer>
 );
 
-export default TextPage;
+export default BasePage;

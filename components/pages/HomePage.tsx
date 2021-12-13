@@ -38,9 +38,9 @@ const HomePage: React.FC<Props> = props => (
             <ContentContainer style={{ color: '#fff' }}>
                 <h1>{props.title}</h1>
                 <h2>{props.slogan}</h2>
-                <span style={{ textDecoration: 'underline' }}>
-                    <Link href="/products">View Products</Link>
-                </span>
+                <Link href="/products">
+                    <a style={{ color: '#fff' }}>View Products</a>
+                </Link>
             </ContentContainer>
         </div>
     </div>
