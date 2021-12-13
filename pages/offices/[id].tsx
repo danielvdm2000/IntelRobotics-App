@@ -1,10 +1,11 @@
 import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from "next"
-import OfficePage, { Office } from "../../components/pages/OfficePage";
+import OfficePage, { Employee, Office } from "../../components/pages/OfficePage";
 import { notNullFilter } from "../../lib/client/utils";
 import { sdk } from "../../lib/server/sdk";
 
 interface Props {
     office: Office;
+    employees: Employee[];
 }
 
 type Paths = {
@@ -12,7 +13,10 @@ type Paths = {
 }
 
 const SingleOffice: NextPage<Props> = props => (
-    <OfficePage office={props.office} />
+    <OfficePage 
+        office={props.office}
+        employees={props.employees}
+    />
 );
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult<Paths>> {
@@ -49,9 +53,25 @@ export async function getStaticProps(context: GetStaticPropsContext<Paths>): Pro
         throw new Error(`Can't get the office with the id of ${id}`);
     }
 
+    if (result.employees == null) {
+        throw new Error(`Can't get the employees of the office with the id of ${id}`);
+    }
+
+    const employees = result.employees.filter(notNullFilter).map(e => {
+        const employee: Employee = {
+            id: e.id,
+            name: e.name,
+            title: e.title,
+            imageUrl: e.image?.url ?? '',
+        };
+
+        return employee;
+    });
+
     return {
         props: {
-            office: result.office
+            employees,
+            office: result.office,
         }
     }
 }

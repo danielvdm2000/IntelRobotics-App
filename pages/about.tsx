@@ -1,5 +1,5 @@
 import { GetStaticPropsResult, NextPage } from "next"
-import TextPage, { TextPageProps } from "../components/pages/TextPage";
+import BasePage from "../components/pages/Basepage";
 import { sdk } from "../lib/server/sdk";
 
 interface Props {
@@ -7,7 +7,11 @@ interface Props {
     content: string;
 }
 
-const AboutPage: NextPage<Props> = TextPage;
+const AboutPage: NextPage<Props> = props => (
+    <BasePage title={props.title}>
+        {props.content}
+    </BasePage>
+);
 
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
     const result = await sdk.AboutPage();
