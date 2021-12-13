@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link';
+import Link from "../../bindings/Link";
 import BasePage from "./BasePage";
 
 export interface Office {

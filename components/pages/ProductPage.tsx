@@ -2,6 +2,7 @@ import React from 'react';
 import ProductSlider from '../ProductSlider';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { Image } from '../types';
+import BasePage from './BasePage';
 
 interface Props {
     name: string;
@@ -10,8 +11,7 @@ interface Props {
 }
 
 const ProductPage: React.FC<Props> = ({ name, description, images }) => (
-    <div>
-        <h1>{name}</h1>
+    <BasePage title={name}>
         <div style={{ display: 'flex', gap: 20, flexDirection: 'row', flexWrap: 'wrap' }}>
             <div style={{ flex: 1, minWidth: 250 }}>
                 <ProductSlider images={images} />
@@ -20,7 +20,7 @@ const ProductPage: React.FC<Props> = ({ name, description, images }) => (
                 {description}
             </article>
         </div>
-    </div>
+    </BasePage>
 );
 
 export default ProductPage;

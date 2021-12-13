@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import Link from '../../bindings/Link';
 import ProductPreview from '../ProductPreview';
 import { Image } from '../types';
 import BasePage from './BasePage';

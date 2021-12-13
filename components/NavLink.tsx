@@ -1,10 +1,10 @@
 import React from 'react';
-import Link, { LinkProps } from 'next/link';
-import { useRouter } from 'next/dist/client/router';
+import Link, { LinkProps } from '../bindings/Link';
+import usePathname from '../bindings/usePathname';
 
 const NavLink: React.FC<LinkProps> = props => {
-    const router = useRouter();
-    const isActive = router.pathname === props.href;
+    const pathname = usePathname();
+    const isActive = pathname === props.href;
 
     return (
         <Link {...props}>
