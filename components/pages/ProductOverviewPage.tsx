@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import ProductPreview from '../ProductPreview';
 import { Image } from '../types';
-import ContentContainer from '../ContentContainer';
+import BasePage from './BasePage';
 
 export interface Product {
     id: string;
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const ProductOverviewPage: React.FC<Props> = ({ products }) => (
-    <ContentContainer>
+    <BasePage title="Products">
         <div className="product-grid">
             {products.map(product => (
                 <Link key={product.id} href={`/products/${product.id}`}>
@@ -27,7 +27,7 @@ const ProductOverviewPage: React.FC<Props> = ({ products }) => (
                 </Link>
             ))}
         </div>
-    </ContentContainer>
+    </BasePage>
 );
 
 export default ProductOverviewPage;

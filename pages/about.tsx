@@ -1,5 +1,5 @@
 import { GetStaticPropsResult, NextPage } from "next"
-import BasePage from "../components/pages/Basepage";
+import BasePage from "../components/pages/BasePage";
 import { sdk } from "../lib/server/sdk";
 
 interface Props {
