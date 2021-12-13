@@ -12,11 +12,11 @@ interface Props {
 const ProductPage: React.FC<Props> = ({ name, description, images }) => (
     <div>
         <h1>{name}</h1>
-        <div style={{ display: 'flex', gap: 20, flexDirection: 'row' }}>
-            <div style={{ flex: 1 }}>
+        <div style={{ display: 'flex', gap: 20, flexDirection: 'row', flexWrap: 'wrap' }}>
+            <div style={{ flex: 1, minWidth: 250 }}>
                 <ProductSlider images={images} />
             </div>
-            <article style={{ flex: 1 }}>
+            <article style={{ flex: 1, minWidth: 250 }}>
                 {description}
             </article>
         </div>
