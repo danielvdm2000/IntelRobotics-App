@@ -20,10 +20,12 @@ const ProductOverviewPage: React.FC<Props> = ({ products }) => (
         <div className="product-grid">
             {products.map(product => (
                 <Link key={product.id} href={`/products/${product.id}`}>
-                    <ProductPreview
-                        name={product.name}
-                        image={product.previewImage}
-                    />
+                    <div>
+                        <ProductPreview
+                            name={product.name}
+                            image={product.previewImage}
+                        />
+                    </div>
                 </Link>
             ))}
         </div>
