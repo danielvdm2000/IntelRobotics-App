@@ -15,16 +15,16 @@ const ProductPreview: React.FC<Props> = ({ image, name }) => (
         padding: '10px',
         cursor: 'pointer',
     }}>
-        <img 
-            src={image?.src} 
-            alt={image?.alt ?? 'No alternative text'} 
+        <img
+            src={image?.src}
+            alt={image?.alt ?? 'No alternative text'}
             style={{
                 display: 'block',
                 width: '100%',
                 height: '200px',
                 objectFit: 'contain',
                 paddingBottom: '10px',
-            }} 
+            }}
         />
         <strong>{name}</strong>
     </div>

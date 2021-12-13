@@ -46,3 +46,10 @@ a {
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
 }
+
+/* Single office page */
+.employee-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
