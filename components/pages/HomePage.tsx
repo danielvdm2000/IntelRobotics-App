@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from '../../bindings/Link';
 import ContentContainer from '../ContentContainer';
-import Footer from '../Footer';
 
 interface Props {
     title: string;
@@ -46,9 +45,6 @@ const HomePage: React.FC<Props> = props => (
                 </ContentContainer>
             </div>
         </div>
-        <ContentContainer>
-            <Footer />
-        </ContentContainer>
     </>
 );
 
